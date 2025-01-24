@@ -5,93 +5,139 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textAlignment="center"
     tools:context=".WorkoutMonitor">
 
     <TextView
         android:id="@+id/secTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="89dp"
         android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="100sp"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="98dp" />
+        app:layout_constraintBottom_toTopOf="@+id/locationTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/milliTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="182dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="111dp"
         android:text="00"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBaseline_toBaselineOf="@+id/secTextView"
-        tools:layout_editor_absoluteX="242dp" />
+        app:layout_constraintBottom_toTopOf="@+id/locationTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/secTextView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
         android:text="시작"
-        tools:layout_editor_absoluteX="267dp"
-        tools:layout_editor_absoluteY="570dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categorySpinner"
+        app:layout_constraintVertical_bias="0.531" />
 
     <Button
-        android:id="@+id/stopButton"
+        android:id="@+id/endButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="121dp"
         android:text="종료"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="570dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/startButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerTextView3"
+        app:layout_constraintVertical_bias="0.444" />
 
     <TextView
         android:id="@+id/timerTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="210dp"
         android:text="운동 타이머"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="33dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/timerTextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="238dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="59dp"
         android:text="장소"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="312dp" />
+        app:layout_constraintBottom_toTopOf="@+id/timerTextView3"
+        app:layout_constraintEnd_toStartOf="@+id/locationTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerTextView1" />
 
     <TextView
         android:id="@+id/timerTextView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="49dp"
         android:text="운동 종목"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="421dp" />
+        app:layout_constraintEnd_toStartOf="@+id/categorySpinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerTextView2" />
 
     <Spinner
-        android:id="@+id/workoutList"
+        android:id="@+id/categorySpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="218dp"
-        tools:layout_editor_absoluteY="439dp" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/timerTextView3"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextView" />
 
     <TextView
         android:id="@+id/locationTextView"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="#BDBDBD"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="36dp"
+        android:background="#D3D3D3"
         android:clickable="true"
         android:gravity="center"
         android:hint="위치 찾기"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColorHint="#FFFFFF"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="322dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/timerTextView2"
+        app:layout_constraintTop_toBottomOf="@+id/secTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
