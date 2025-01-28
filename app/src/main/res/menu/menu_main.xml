@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/workout_timer"
+        android:title="@string/workout_timer"
+        android:icon="@drawable/baseline_timer_24" />
+
+    <item android:id="@+id/map"
+        android:title="@string/map"
+        android:icon="@drawable/baseline_location_on_24" />
+
+    <item android:id="@+id/record"
+        android:title="@string/records"
+        android:icon="@drawable/baseline_edit_24" />
+
+    <item android:id="@+id/my_page"
+        android:title="@string/my_page"
+        android:icon="@drawable/baseline_person_24"/>
+</menu>
