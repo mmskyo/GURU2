@@ -1,11 +1,14 @@
 package com.example.guru2
 
+import android.content.ContentValues
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import android.database.sqlite.SQLiteOpenHelper
 
 class MyPageFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -16,6 +19,8 @@ class MyPageFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var logOut: TextView
     private lateinit var name: String
     private lateinit var pw: String
+    private lateinit var myHelper: MyDBHelper
+    private lateinit var sqlDB: SQLiteDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +28,8 @@ class MyPageFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
         // Fragment의 레이아웃을 inflate
         val view = inflater.inflate(R.layout.fragment_my_page, container, false)
+
+        myHelper = MyDBHelper.getInstance(requireContext()) // 싱글톤 적용
 
         // View 초기화
         editName = view.findViewById(R.id.editName)
@@ -35,6 +42,7 @@ class MyPageFragment : Fragment(), AdapterView.OnItemSelectedListener {
         nameBtn.setOnClickListener {
             name = editName.text.toString()
             Toast.makeText(requireContext(), "이름이 변경되었습니다.", Toast.LENGTH_SHORT).show()
+            // updateUserInfo()
         }
 
         pwBtn.setOnClickListener {
@@ -66,5 +74,17 @@ class MyPageFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // 스피너에서 아무것도 선택되지 않았을 때 호출
     override fun onNothingSelected(parent: AdapterView<*>?) {
         Toast.makeText(requireContext(), "No item selected", Toast.LENGTH_SHORT).show()
+    }
+
+    // 데이터베이스
+    private fun updateUserInfo(newPW: String, newName: String, newCat: String, userId: String) {
+        val db = myHelper.writableDatabase
+        val values = ContentValues().apply {
+            put("mPW", newPW)
+            put("mName", newName)
+            put("mCat", newCat)
+        }
+        db.update("memberTBL", values, "mId = ?", arrayOf(userId))
+        db.close()
     }
 }

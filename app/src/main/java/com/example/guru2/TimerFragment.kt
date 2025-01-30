@@ -38,7 +38,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_timer, container, false)
 
-        myHelper = MyDBHelper(requireContext())
+        myHelper = MyDBHelper.getInstance(requireContext())
 
         startButton = view.findViewById(R.id.startButton)
         endButton = view.findViewById(R.id.endButton)
@@ -80,7 +80,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
             end()
             sqlDB = myHelper.writableDatabase
             sqlDB.execSQL( //${locationTextView.text}
-                "INSERT INTO timeTBL VALUES ('$no', '$strTime', 'location0', '${spinner.selectedItem}');"
+                "INSERT INTO timeTBL VALUES ('${getUserId()}serId', '$no', '$strTime', 'location0', '${spinner.selectedItem}');"
             )
             sqlDB.close()
 
@@ -149,14 +149,10 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
         Toast.makeText(requireContext(), "No item selected", Toast.LENGTH_SHORT).show()
     }
 
-    inner class MyDBHelper(context: Context) : SQLiteOpenHelper(context, "appDB", null, 2) {
-        override fun onCreate(db: SQLiteDatabase?) {
-            db!!.execSQL("CREATE TABLE timeTBL (tNo INTEGER, tTime TEXT, tLoc TEXT, tCat TEXT);")
-        }
-
-        override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-            db!!.execSQL("DROP TABLE IF EXISTS timeTBL")
-            onCreate(db)
-        }
+    // 아이디
+    private fun getUserId(): String? {
+        val sharedPref = requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        return sharedPref.getString("userId", null) // 저장된 userId 가져오기
     }
+
 }
