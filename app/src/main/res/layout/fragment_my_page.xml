@@ -58,41 +58,16 @@
         android:id="@+id/editName"
         android:layout_width="210dp"
         android:layout_height="49dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="120dp"
         android:ems="10"
         android:hint="변경할 이름"
         android:inputType="text"
         android:maxLength="8"
         app:layout_constraintBottom_toTopOf="@+id/editPW"
-        app:layout_constraintEnd_toStartOf="@+id/nameBtn"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/nameBtn"
-        android:layout_width="65dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="36dp"
-        android:text="변경"
-        app:layout_constraintBottom_toTopOf="@+id/pwBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editName"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/pwBtn"
-        android:layout_width="65dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="54dp"
-        android:text="변경"
-        app:layout_constraintBottom_toTopOf="@+id/editCategory"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/editPW"
-        app:layout_constraintTop_toBottomOf="@+id/nameBtn" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/editCategory"
@@ -142,5 +117,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.775" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="22dp"
+        android:text="변경사항 저장"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editType" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
