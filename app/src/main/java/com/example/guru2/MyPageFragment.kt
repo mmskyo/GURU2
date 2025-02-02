@@ -49,10 +49,10 @@ class MyPageFragment : Fragment(), AdapterView.OnItemSelectedListener {
         spinner.onItemSelectedListener = this
 
         // 현재 로그인한 유저 정보 가져오기
-        userId = getCurrentUserId() // (이 함수는 로그인 시 저장된 userId를 가져오는 용도로 구현 필요)
-        loadUserInfo(userId) // 사용자 정보 불러오기
+        userId = getCurrentUserId()
+        loadUserInfo(userId)
 
-        // 저장 버튼 클릭 시 정보 업데이트
+        // 저장 버튼 리스너
         saveBtn.setOnClickListener {
             saveUserInfo(userId)
         }

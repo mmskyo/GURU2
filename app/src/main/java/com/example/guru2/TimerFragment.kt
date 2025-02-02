@@ -80,7 +80,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
             end()
             sqlDB = myHelper.writableDatabase
             sqlDB.execSQL( //${locationTextView.text}
-                "INSERT INTO timeTBL VALUES ('${getUserId()}serId', '$no', '$strTime', 'location0', '${spinner.selectedItem}');"
+                "INSERT INTO timeTBL VALUES ('${getUserId()}', '$no', '$strTime', 'location0', '${spinner.selectedItem}');"
             )
             sqlDB.close()
 
