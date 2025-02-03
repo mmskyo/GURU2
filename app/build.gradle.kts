@@ -10,7 +10,7 @@ plugins {
 val properties = Properties().apply {
     load(FileInputStream(rootProject.file("local.properties")))
 }
-
+val kakaoMapKey = properties.getProperty("KAKAO_MAP_KEY") ?: "d8303786644f79b4b0ae0a133c4a67e2"
 android {
     namespace = "com.example.guru2"
     compileSdk = 35
@@ -23,7 +23,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        //buildConfigField("String", "KAKAO_MAP_KEY", properties.getProperty("KAKAO_MAP_KEY"))
         ndk {
             abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
         }
