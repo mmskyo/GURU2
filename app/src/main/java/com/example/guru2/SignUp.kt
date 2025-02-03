@@ -1,14 +1,16 @@
 package com.example.guru2
 
-import android.content.ContentValues
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 
 class SignUp : Fragment(), AdapterView.OnItemSelectedListener {
     lateinit var setId : EditText
@@ -71,11 +73,11 @@ class SignUp : Fragment(), AdapterView.OnItemSelectedListener {
 
             try {
                 stmt.executeInsert() // 실행
-                Toast.makeText(requireContext(), "회원가입 완료!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "회원가입이 되었습니다.", Toast.LENGTH_SHORT).show()
 
                 // 성공하면 로그인으로 이동 수정!!
                 val mainActivity = activity as? MainActivity
-                mainActivity?.replaceFragment(TimerFragment())
+                mainActivity?.replaceFragment(TimerFragment(), false)
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "회원가입 실패: ${e.message}", Toast.LENGTH_LONG).show()
             } finally {

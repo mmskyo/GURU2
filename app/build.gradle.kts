@@ -1,16 +1,12 @@
-import java.io.FileInputStream
-import java.util.Properties
-
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
-
-val properties = Properties().apply {
-    load(FileInputStream(rootProject.file("local.properties")))
-}
-val kakaoMapKey = properties.getProperty("KAKAO_MAP_KEY") ?: "d8303786644f79b4b0ae0a133c4a67e2"
+// java.util.properties
+//val properties = Properties().apply {
+//    load(FileInputStream(rootProject.file("local.properties")))
+//}
+//val kakaoMapKey = properties.getProperty("KAKAO_MAP_KEY") ?: "d8303786644f79b4b0ae0a133c4a67e2"
 android {
     namespace = "com.example.guru2"
     compileSdk = 35
@@ -23,10 +19,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        ndk {
-            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
-        }
-        buildConfigField("String", "KAKAO_MAP_KEY", properties.getProperty("KAKAO_MAP_KEY"))
+//        ndk {
+//            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
+//        }
+//        buildConfigField("String", "KAKAO_MAP_KEY", properties.getProperty("KAKAO_MAP_KEY"))
     }
 
     buildTypes {
@@ -42,13 +38,20 @@ android {
     // Configure only for each module that uses Java 8
     // language features (either in its source code or
     // through dependencies).
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_1_8
+//        targetCompatibility = JavaVersion.VERSION_1_8
+//    }
     // For Kotlin projects
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     buildFeatures {

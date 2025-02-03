@@ -2,7 +2,6 @@ package com.example.guru2
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +19,6 @@ import kotlin.concurrent.timer
 class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var time = 0
     private var timerTask: Timer? = null
-    private var savedTime: Int = 0
     private var no: Int = 0
     private lateinit var startButton: Button
     private lateinit var endButton: Button
@@ -63,9 +61,8 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         // 위치 찾기 버튼 리스너
         locationTextView.setOnClickListener {
-            // 지도화면으로 전환후 위치 찾기
-//            val mainActivity = activity as? MainActivity
-//            mainActivity?.replaceFragment(MapFragment())
+            // 사용자가 입력하는걸로 대신
+            // xml에서 editText로 바꿔야함
         }
 
         // 시작 버튼 리스너
@@ -86,7 +83,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             // 기록 프래그먼트로 전환 수정해야함
             val mainActivity = activity as? MainActivity
-            mainActivity?.replaceFragment(MyPageFragment())
+            //mainActivity?.replaceFragment(MyPageFragment(), true)
         }
 
         return view
