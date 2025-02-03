@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(TimerFragment())
                     true
                 }
-//                R.id.map -> {
-//                    replaceFragment(MapFragment2())
-//                    true
-//                }
+                R.id.map -> {
+                    replaceFragment(MapFragment())
+                    true
+                }
 //                R.id.record -> {
 //                    replaceFragment(RecordsFragment())
 //                    true
