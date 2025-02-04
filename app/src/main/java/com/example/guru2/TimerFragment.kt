@@ -22,8 +22,8 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var no: Int = 0
     private lateinit var startButton: Button
     private lateinit var endButton: Button
+    private lateinit var minTextView: TextView
     private lateinit var secTextView: TextView
-    private lateinit var milliTextView: TextView
     private lateinit var locationTextView: TextView
     private lateinit var myHelper: MyDBHelper
     private lateinit var sqlDB: SQLiteDatabase
@@ -40,8 +40,8 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         startButton = view.findViewById(R.id.startButton)
         endButton = view.findViewById(R.id.endButton)
+        minTextView = view.findViewById(R.id.minTextView)
         secTextView = view.findViewById(R.id.secTextView)
-        milliTextView = view.findViewById(R.id.milliTextView)
         locationTextView = view.findViewById(R.id.locationTextView)
 
         // 스피너 설정
@@ -73,7 +73,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
         endButton.setOnClickListener {
             no++
 
-            strTime = String.format("%02d:%02d", time / 100, time % 100)
+            strTime = String.format("%02d:%02d", time / 60, time % 60)
             end()
             sqlDB = myHelper.writableDatabase
             sqlDB.execSQL( //${locationTextView.text}
@@ -83,7 +83,7 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             // 기록 프래그먼트로 전환 수정해야함
             val mainActivity = activity as? MainActivity
-            //mainActivity?.replaceFragment(MyPageFragment(), true)
+            mainActivity?.replaceFragment(MyPageFragment(), true)
         }
 
         return view
@@ -93,18 +93,17 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
         // 타이머 시작 시 종료 버튼 제외한 모든 뷰 비활성화
         setClickEnabled(false)
 
-        // 타이머 시작
-        startButton.isEnabled = false
-        timerTask = timer(period = 10) {
+        // 타이머 주기를 1초로 설정
+        timerTask = timer(period = 1000) {
             time++
-            val sec = time / 100
-            val milli = time % 100
+            val min = time / 60 // 1초마다 증가하므로, 60초당 1분
+            val sec = time % 60 // 60초가 넘어가면 초가 0으로 초기화
 
             // 프래그먼트가 액티비티에 연결된 상태에서만 실행
             if (isAdded && activity != null) {
                 activity?.runOnUiThread {
-                    secTextView.text = "$sec"
-                    milliTextView.text = "$milli"
+                    minTextView.text = String.format("%02d", min) // 두자리 표현
+                    secTextView.text = String.format("%02d", sec)
                 }
             } else {
                 // 프래그먼트가 분리된 경우 타이머 종료
@@ -123,8 +122,8 @@ class TimerFragment : Fragment(), AdapterView.OnItemSelectedListener {
         // 초기화
         time = 0
         startButton.isEnabled = true
-        secTextView.text = "0"
-        milliTextView.text = "00"
+        minTextView.text = "00"
+        secTextView.text = "00"
     }
 
     // 뷰 활성화/비활성화 메서드
